@@ -34,6 +34,22 @@ SAMPLE_GAIA = [
         ),
         "answer": "46",
     },
+    # The actual GAIA validation set (2023_level1) — the model needs to look up
+    # two real-world facts (Kipchoge's marathon pace, the Moon's minimum
+    # perigee) and combine them; arithmetic alone isn't enough. Official
+    # answer is "17" (thousand hours).
+    {
+        "question": (
+            "If Eliud Kipchoge could maintain his record-making marathon pace "
+            "indefinitely, how many thousand hours would it take him to run "
+            "the distance between the Earth and the Moon its closest "
+            "approach? Please use the minimum perigee value on the Wikipedia "
+            "page for the Moon when carrying out your calculation. Round "
+            "your result to the nearest 1000 hours and do not use any comma "
+            "separators."
+        ),
+        "answer": "17",
+    },
 ]
 
 
