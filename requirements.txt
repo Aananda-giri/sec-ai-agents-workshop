@@ -1,0 +1,7 @@
+# Tested with litellm 1.89.4 (Gemini tool-calling + structured output confirmed working).
+litellm>=1.89.4
+python-dotenv>=1.2.2
+pydantic>=2.12.5
+tavily-python>=0.5.0
+datasets>=3.0.0
+jupyterlab>=4.5.7
