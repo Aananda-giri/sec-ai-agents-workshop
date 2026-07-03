@@ -44,10 +44,18 @@ jupyter lab
 - `mini_agent/tools.py` — `calculator`, `web_search` (Tavily-backed, degrades gracefully
   without a key), `execute_python` (local subprocess, no sandbox), and `write_tool` /
   `load_generated_tools` — the self-extension finale where the agent writes its own tool.
-- `mini_agent/gaia.py` — `SAMPLE_GAIA` (4 bundled offline GAIA-style questions, no HF token
-  needed), the `evaluate()` scoring harness, and optional `load_hf_gaia()` for the real gated
-  HF dataset if you have `datasets` + `HF_TOKEN` set up.
-- `notebooks/01_simplest_agent.ipynb` … `05_evaluation_gaia.ipynb` — the live-coding notebooks.
+- `mini_agent/gaia.py` — `SAMPLE_GAIA` (5 bundled offline GAIA-style questions, no HF token
+  needed — including the real GAIA benchmark's Kipchoge/Moon-perigee question), the
+  `evaluate()` scoring harness, and optional `load_hf_gaia()` for the real gated HF dataset if
+  you have `datasets` + `HF_TOKEN` set up.
+- `mini_agent/coding_tools.py` — `read_file`, `write_file`, `edit_file`, `glob_files`,
+  `grep_files`, `bash` — a minimal coding-agent toolset modeled on
+  [nanocode](https://github.com/1rgs/nanocode), scoped to a `workspace/` directory (`bash`
+  excepted — see the safety note in notebook 6).
+- `notebooks/01_simplest_agent.ipynb` … `05_evaluation_gaia.ipynb` — the live-coding notebooks
+  for the core 2-hour run of show.
+- `notebooks/06_coding_agent.ipynb` — **bonus**, time permitting: the same `Agent` class
+  becomes a coding agent. Not in the core 120-minute budget below.
 
 ## Run of show
 
@@ -61,12 +69,14 @@ jupyter lab
 | Act 3 — memory + code execution | Live code | `03_memory_and_code_execution.ipynb` | 20 min |
 | Act 4 — self-extending agent (finale) | Live code | `04_self_extending_agent.ipynb` | 15 min |
 | Act 5 — evaluation on GAIA | Live code | `05_evaluation_gaia.ipynb` | 15 min |
+| *Bonus: a coding agent* | *Live code, if time allows* | `06_coding_agent.ipynb` | *not budgeted* |
 | Frameworks, coding agents, real-world use | Talk/discussion | — | 10 min |
 | Q&A | Discussion | — | 20 min |
 
 The "frameworks" segment is where Claude Code, Cursor, LangGraph, CrewAI, MCP, and
 multi-agent patterns get mentioned — and where the cut book chapters (below) resurface
-conceptually rather than in code.
+conceptually rather than in code. If notebook 6 ran live, it's also a natural, concrete
+anchor for that discussion: "you just watched a minimal version of what these tools do."
 
 ## What we cut and why
 

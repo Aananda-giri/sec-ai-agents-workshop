@@ -4,3 +4,5 @@ __pycache__/
 .ipynb_checkpoints/
 generated_tools/*.py
 !generated_tools/.gitkeep
+workspace/*
+!workspace/.gitkeep

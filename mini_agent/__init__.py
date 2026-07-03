@@ -6,6 +6,14 @@ from mini_agent.tools import (
     write_tool,
     load_generated_tools,
 )
+from mini_agent.coding_tools import (
+    read_file,
+    write_file,
+    edit_file,
+    glob_files,
+    grep_files,
+    bash,
+)
 
 __all__ = [
     "Agent",
@@ -16,4 +24,10 @@ __all__ = [
     "execute_python",
     "write_tool",
     "load_generated_tools",
+    "read_file",
+    "write_file",
+    "edit_file",
+    "glob_files",
+    "grep_files",
+    "bash",
 ]
