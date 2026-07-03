@@ -15,13 +15,11 @@ from typing import Any, Callable, get_type_hints
 from litellm import acompletion
 from litellm.exceptions import RateLimitError, ServiceUnavailableError, Timeout, APIConnectionError
 
-# Gemini's free tier is rate-limited (as low as 5 requests/minute on
-# gemini-2.5-flash) and a ReAct loop can easily burn through that in one
-# turn; it also occasionally returns transient 503s under load. Retry with
-# the delay the API itself suggests so a live demo doesn't just die on a
-# 429 — enabling billing on the Gemini project removes the rate-limit
-# ceiling almost entirely and costs pennies.
-DEFAULT_MODEL = "gemini/gemini-2.5-flash"
+# A ReAct loop makes several LLM calls per turn, so any provider's rate
+# limiting or transient 503s can surface mid-demo. Retry with the delay the
+# API itself suggests (when it gives one) so a live session doesn't just
+# die on a 429.
+DEFAULT_MODEL = "deepseek/deepseek-chat"
 _TRANSIENT_ERRORS = (RateLimitError, ServiceUnavailableError, Timeout, APIConnectionError)
 _RETRY_DELAY_RE = re.compile(r'"retryDelay":\s*"(\d+)s"')
 
