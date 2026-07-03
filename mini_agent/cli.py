@@ -17,10 +17,17 @@ from mini_agent import Agent, bash, edit_file, glob_files, grep_files, read_file
 from mini_agent.coding_tools import WORKSPACE_DIR
 
 
+INSTRUCTIONS = (
+    "You are a concise coding assistant. Workspace: {workspace}. "
+    "Only use tools when the request actually requires touching files or "
+    "running something — reply directly to greetings and general questions."
+)
+
+
 def make_coding_agent() -> Agent:
     return Agent(
         tools=[read_file, write_file, edit_file, glob_files, grep_files, bash],
-        instructions=f"You are a concise coding assistant. Workspace: {WORKSPACE_DIR}",
+        instructions=INSTRUCTIONS.format(workspace=WORKSPACE_DIR),
         max_steps=8,
     )
 

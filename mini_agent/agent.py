@@ -74,7 +74,11 @@ class Agent:
         instructions: str = "",
         max_steps: int = 8,
     ):
-        self.model = model or os.environ.get("MODEL", DEFAULT_MODEL)
+        # os.environ.get("MODEL", DEFAULT_MODEL) alone isn't enough: it only
+        # falls back when the key is absent, not when it's set-but-empty (a
+        # real case — ambient shell env vars can be "" without ever being in
+        # .env, so load_dotenv has nothing to override).
+        self.model = model or os.environ.get("MODEL") or DEFAULT_MODEL
         self.instructions = instructions
         self.max_steps = max_steps
         self.tools = {t.__name__: t for t in (tools or [])}
