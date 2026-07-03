@@ -133,7 +133,7 @@ load_dotenv(override=True)
 from litellm import acompletion
 
 async def main():
-    r = await acompletion(model='deepseek/deepseek-chat', messages=[{'role': 'user', 'content': 'Say OK.'}])
+    r = await acompletion(model='deepseek/deepseek-v4-flash', messages=[{'role': 'user', 'content': 'Say OK.'}])
     print('SUCCESS:', r.choices[0].message.content)
 
 asyncio.run(main())

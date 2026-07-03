@@ -9,6 +9,7 @@ from __future__ import annotations
 import asyncio
 import inspect
 import json
+import os
 import re
 from typing import Any, Callable, get_type_hints
 
@@ -19,7 +20,11 @@ from litellm.exceptions import RateLimitError, ServiceUnavailableError, Timeout,
 # limiting or transient 503s can surface mid-demo. Retry with the delay the
 # API itself suggests (when it gives one) so a live session doesn't just
 # die on a 429.
-DEFAULT_MODEL = "deepseek/deepseek-chat"
+#
+# Fallback default model — override by setting MODEL in .env. Read lazily
+# in Agent.__init__ (not at import time) so it always reflects whatever
+# load_dotenv() has loaded by the time an Agent is actually constructed.
+DEFAULT_MODEL = "deepseek/deepseek-v4-flash"
 _TRANSIENT_ERRORS = (RateLimitError, ServiceUnavailableError, Timeout, APIConnectionError)
 _RETRY_DELAY_RE = re.compile(r'"retryDelay":\s*"(\d+)s"')
 
@@ -64,12 +69,12 @@ class Agent:
 
     def __init__(
         self,
-        model: str = DEFAULT_MODEL,
+        model: str | None = None,
         tools: list[Callable] | None = None,
         instructions: str = "",
         max_steps: int = 8,
     ):
-        self.model = model
+        self.model = model or os.environ.get("MODEL", DEFAULT_MODEL)
         self.instructions = instructions
         self.max_steps = max_steps
         self.tools = {t.__name__: t for t in (tools or [])}

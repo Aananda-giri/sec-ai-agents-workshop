@@ -39,7 +39,8 @@ jupyter lab
 ## What's here
 
 - `mini_agent/agent.py` — the `Agent` class: a ReAct loop over `litellm.acompletion`
-  (~130 lines, default model `deepseek/deepseek-chat`). `agent.messages` *is* the memory —
+  (~130 lines, default model `deepseek/deepseek-v4-flash`, override with `MODEL` in `.env`).
+  `agent.messages` *is* the memory —
   there's no separate memory system in this workshop.
 - `mini_agent/tools.py` — `calculator`, `web_search` (Tavily-backed, degrades gracefully
   without a key), `execute_python` (local subprocess, no sandbox), and `write_tool` /
