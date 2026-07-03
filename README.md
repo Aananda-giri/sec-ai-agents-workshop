@@ -31,7 +31,8 @@ pip install -r requirements.txt
 # uv pip install -r requirements.txt
 
 cp .env.example .env
-# edit .env: fill in DEEPSEEK_API_KEY (required), TAVILY_API_KEY (optional, for web_search)
+# edit .env: fill in DEEPSEEK_API_KEY (required),
+# TAVILY_API_KEY (optional, for web_search — get one at https://app.tavily.com/home)
 
 jupyter lab
 ```
@@ -61,6 +62,26 @@ jupyter lab
   for the core 2-hour run of show.
 - `notebooks/06_coding_agent.ipynb` — **bonus**, time permitting: the same `Agent` class
   becomes a coding agent, ending with the CLI above. Not in the core 120-minute budget below.
+
+## Using a different model
+
+Everything here defaults to DeepSeek, but `Agent` reads its model from `MODEL` in `.env`
+(falling back to `deepseek/deepseek-v4-flash` if unset — see `mini_agent/agent.py`), and
+`litellm` supports most providers. To switch to Gemini, for example:
+
+```
+MODEL=gemini/gemini-2.5-flash
+GEMINI_API_KEY=...   # get one at https://aistudio.google.com/api-keys
+```
+
+Gemini model preferences, in order (valid `litellm`/Gemini model identifiers; not live-tested
+against this `Agent` class the way the DeepSeek default was). Fair warning from our own
+testing: a free-tier Gemini key can hit a hard **daily** request quota, not just a per-minute
+one — retries can't fix that, only a billed key can. Budget accordingly if you switch.
+
+1. `gemini/gemini-3.1-flash-lite`
+2. `gemini/gemini-2.5-flash`
+3. `gemini/gemini-3.5-flash`
 
 ## Run of show
 
@@ -98,3 +119,14 @@ ported from the book's OpenAI/Anthropic-based, multi-module `scratch_agents` fra
 single ~130-line `Agent` class running on DeepSeek via [litellm](https://github.com/BerriAI/litellm).
 The goal here is teachability in two hours, not feature completeness — everything fits on
 screen and can be built live.
+
+## References
+
+- Book: [*Build an AI Agent from Scratch*](https://www.manning.com/books/build-an-ai-agent-from-scratch)
+  (Manning) — the full 10-chapter companion this workshop is trimmed from.
+- [nanocode](https://github.com/1rgs/nanocode/blob/master/nanocode.py) — the ~250-line
+  reference coding agent `mini_agent/coding_tools.py` and `cli.py` are modeled on.
+- [GAIA benchmark leaderboard](https://huggingface.co/spaces/gaia-benchmark/leaderboard) —
+  where Act 5's evaluation ideas come from.
+- [Presentation slides](https://canva.link/h4z1txiit3y4skn)
+- [Workshop repo on GitHub](https://github.com/Aananda-giri/sec-ai-agents-workshop)
