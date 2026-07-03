@@ -53,10 +53,14 @@ jupyter lab
   `grep_files`, `bash` — a minimal coding-agent toolset modeled on
   [nanocode](https://github.com/1rgs/nanocode), scoped to a `workspace/` directory (`bash`
   excepted — see the safety note in notebook 6).
+- `mini_agent/cli.py` — a minimal terminal REPL for the coding agent (`python3 -m
+  mini_agent.cli` from `workshop/`), closer to how you'd actually use something like Claude
+  Code than one-shot notebook cells. Same `Agent`, same tools — just wrapped in an `input()`
+  loop.
 - `notebooks/01_simplest_agent.ipynb` … `05_evaluation_gaia.ipynb` — the live-coding notebooks
   for the core 2-hour run of show.
 - `notebooks/06_coding_agent.ipynb` — **bonus**, time permitting: the same `Agent` class
-  becomes a coding agent. Not in the core 120-minute budget below.
+  becomes a coding agent, ending with the CLI above. Not in the core 120-minute budget below.
 
 ## Run of show
 
