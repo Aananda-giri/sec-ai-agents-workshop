@@ -1,4 +1,4 @@
-# Tested with litellm 1.89.4 (Gemini tool-calling + structured output confirmed working).
+# Tested with litellm 1.89.4 (DeepSeek tool-calling + multi-step ReAct loop confirmed working).
 litellm>=1.89.4
 python-dotenv>=1.2.2
 pydantic>=2.12.5

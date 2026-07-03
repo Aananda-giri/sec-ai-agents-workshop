@@ -22,6 +22,9 @@ ideas, condensed to fit a single session.
 
 ## Setup
 
+See [`QUICKSTART.md`](QUICKSTART.md) for full, platform-specific (Windows/macOS/Linux)
+virtual-environment setup, install, and troubleshooting steps. Short version:
+
 ```bash
 pip install -r requirements.txt
 # or, if you use uv:
